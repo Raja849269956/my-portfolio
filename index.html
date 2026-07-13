@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raja Narender Reddy Lingaladinne | AI/ML Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3250;
+      --accent: #6c63ff;
+      --accent2: #00d4aa;
+      --accent3: #ff6584;
+      --text: #e8eaf0;
+      --text-muted: #8b90a8;
+      --text-dim: #555a75;
+      --green: #22c55e;
+      --yellow: #eab308;
+      --radius: 12px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 17, 23, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--accent);
+      letter-spacing: -0.3px;
+    }
+    .nav-links { display: flex; gap: 1.6rem; }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 80px 2rem 60px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      margin-bottom: 1rem;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2.2rem;
+    }
+    .tag {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #5a52e0; }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* MAIN LAYOUT */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 2rem 80px; }
+
+    /* SECTION */
+    .section { margin-bottom: 3.5rem; }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon {
+      width: 32px; height: 32px;
+      background: rgba(108, 99, 255, 0.15);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .section-header h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+    }
+    .section-meta {
+      margin-left: auto;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* CARD */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .card:last-child { margin-bottom: 0; }
+
+    /* PROJECT CARD */
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .project-header {
+      padding: 1.5rem 1.5rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .project-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .project-live-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(0, 212, 170, 0.1);
+      border: 1px solid rgba(0, 212, 170, 0.3);
+      color: var(--accent2);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 999px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .project-live-btn:hover { background: rgba(0, 212, 170, 0.2); }
+    .live-dot {
+      width: 7px; height: 7px;
+      background: var(--accent2);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .project-subtitle {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 0.8rem;
+    }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .project-body { padding: 1.5rem; }
+
+    /* SUBSECTION */
+    .subsection { margin-bottom: 1.6rem; }
+    .subsection:last-child { margin-bottom: 0; }
+    .subsection-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+    .subsection p { color: var(--text-muted); font-size: 0.92rem; }
+
+    /* TABLE */
+    .tech-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-top: 0.5rem;
+    }
+    .tech-table th {
+      text-align: left;
+      color: var(--text-dim);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .tech-table td {
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid rgba(46, 50, 80, 0.5);
+      color: var(--text-muted);
+      vertical-align: top;
+    }
+    .tech-table td:first-child {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--accent2);
+      white-space: nowrap;
+    }
+    .tech-table tr:last-child td { border-bottom: none; }
+
+    /* SCENARIO GRID */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .scenario-item {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+    }
+    .scenario-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+    .pass { background: rgba(34, 197, 94, 0.15); color: var(--green); border: 1px solid rgba(34, 197, 94, 0.3); }
+    .partial { background: rgba(234, 179, 8, 0.15); color: var(--yellow); border: 1px solid rgba(234, 179, 8, 0.3); }
+    .scenario-text { font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; }
+    .scenario-text strong { color: var(--text); font-size: 0.8rem; }
+
+    /* SCORE BANNER */
+    .score-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(135deg, rgba(108,99,255,0.1), rgba(0,212,170,0.08));
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .score-stat { text-align: center; }
+    .score-stat .num {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent2);
+      line-height: 1;
+    }
+    .score-stat .label { font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* INSIGHT BLOCK */
+    .insight {
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.25rem;
+      background: rgba(108, 99, 255, 0.06);
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+    }
+    .insight p {
+      font-style: italic;
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+
+    /* TIMELINE */
+    .timeline-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 600;
+      min-width: 60px;
+      padding-top: 2px;
+    }
+    .timeline-content strong { color: var(--text); font-size: 0.9rem; }
+    .timeline-content p { color: var(--text-muted); font-size: 0.85rem; margin-top: 2px; }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.75rem;
+    }
+    .skill-item {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+    }
+    .skill-item .skill-name { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .skill-item .skill-cat { font-size: 0.72rem; color: var(--text-dim); margin-bottom: 0.5rem; }
+    .skill-bar-bg { height: 3px; background: var(--border); border-radius: 999px; overflow: hidden; }
+    .skill-bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+
+    /* FUTURE WORK */
+    .future-list { list-style: none; }
+    .future-list li {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .future-list li:last-child { border-bottom: none; }
+    .future-list li::before {
+      content: '→';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .project-title-row { flex-direction: column; }
+      .score-banner { flex-direction: column; align-items: flex-start; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Raja Narender Reddy Lingaladinne</div>
+  <div class="nav-links">
+    <a href="#artifact">AI Lab Project</a>
+    <a href="#skills">Skills</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Building Intelligent Systems<br /><span>At the Intersection of AI &amp; Automation</span></h1>
+  <p>
+    10+ years architecting enterprise AI solutions — from large-scale automation platforms
+    to machine learning pipelines, LLM applications, and production AI systems.
+  </p>
+  <div class="hero-tags">
+    <span class="tag">Machine Learning · Python · Scikit-learn</span>
+    <span class="tag">LLM · Prompt Engineering · GPT-4o</span>
+    <span class="tag">Azure AI · Cognitive Services · NLP</span>
+    <span class="tag">Anomaly Detection · Predictive Analytics</span>
+    <span class="tag">Enterprise Automation · Blue Prism · UiPath</span>
+    <span class="tag">Azure AI-900 · Blue Prism AD01 · UiPath Certified</span>
+  </div>
+  <div class="hero-actions">
+    <a href="#artifact" class="btn btn-primary">View AI Lab Project ↓</a>
+    <a href="https://www.chatbase.co/B_hX8l5FC4GH_uthtMgUL/help" target="_blank" class="btn btn-outline">Live Demo ↗</a>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+  <!-- ── ARTIFACT 1 ── -->
+  <div class="section" id="artifact">
+    <div class="section-header">
+      <div class="section-icon">🤖</div>
+      <h2>AI Lab Project</h2>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title-row">
+          <div class="project-title">Interview Prep Coach</div>
+          <a href="https://www.chatbase.co/B_hX8l5FC4GH_uthtMgUL/help" target="_blank" class="project-live-btn">
+            <span class="live-dot"></span> Live Bot
+          </a>
+        </div>
+        <div class="project-subtitle">
+          AI-Powered Mock Interview Chatbot · Machine Learning Fundamentals · Summer 2026
+        </div>
+        <div class="project-tags">
+          <span class="tag">Chatbase</span>
+          <span class="tag">GPT-4o-mini</span>
+          <span class="tag">Prompt Engineering</span>
+          <span class="tag">Design Thinking</span>
+          <span class="tag">Adversarial Testing</span>
+          <span class="tag">No-Code AI</span>
+        </div>
+      </div>
+
+      <div class="project-body">
+
+        <!-- PROBLEM -->
+        <div class="subsection">
+          <div class="subsection-title">Problem Statement</div>
+          <p>
+            Preparing for AI/ML and software engineering interviews is disorganized, expensive, and feedback-free.
+            Generic prep books aren't role-specific. Coaching is unaffordable for most students.
+            Solo practice produces no feedback loop — you answer into the void.
+            Every member of my cohort is on the job market, making this problem both personal and universal.
+          </p>
+        </div>
+
+        <!-- SOLUTION -->
+        <div class="subsection">
+          <div class="subsection-title">Solution</div>
+          <p>
+            A no-code AI chatbot that does two things: (1) generates five role-specific interview questions
+            given a job title, company type, and experience level, and (2) evaluates the user's answers
+            in four parts — <em>what worked, what's missing, what to add, and a stronger version to compare against</em>.
+            It won't hand you a script to memorize because memorized answers fail in real interviews.
+          </p>
+        </div>
+
+        <!-- TOOLS & METHODS -->
+        <div class="subsection">
+          <div class="subsection-title">Tools &amp; Methods</div>
+          <table class="tech-table">
+            <thead>
+              <tr>
+                <th>Layer</th>
+                <th>Choice</th>
+                <th>Reason</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Platform</td>
+                <td>Chatbase (free tier)</td>
+                <td>Rapid deployment, GPT-4o-mini backend, zero infrastructure overhead</td>
+              </tr>
+              <tr>
+                <td>Model</td>
+                <td>GPT-4o-mini</td>
+                <td>Sufficient capability for structured prompt-following; cost-efficient</td>
+              </tr>
+              <tr>
+                <td>Design Framework</td>
+                <td>IDEO Design Thinking (5 stages)</td>
+                <td>Structured problem definition before building</td>
+              </tr>
+              <tr>
+                <td>Core Artifact</td>
+                <td>350-word system prompt</td>
+                <td>Primary engineering lever in a no-code environment</td>
+              </tr>
+              <tr>
+                <td>Testing</td>
+                <td>15 adversarial scenarios</td>
+                <td>Edge cases, off-topic deflection, contradictory and emotional inputs</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- MY ROLE -->
+        <div class="subsection">
+          <div class="subsection-title">My Role</div>
+          <p>
+            Solo designer and builder of the entire system (part of Group 2 for ideation and testing).
+            I wrote and iterated the full system prompt — the primary engineering artifact.
+            I ran all 15 test scenarios, documented every result, and executed a deliberate
+            mid-project <strong style="color:var(--text)">pivot</strong>: an earlier concept (Menu Match) was abandoned after
+            identifying it crossed into restricted medical advice territory — a conscious risk management decision.
+          </p>
+        </div>
+
+        <!-- DESIGN DECISIONS -->
+        <div class="subsection">
+          <div class="subsection-title">Architecture &amp; Design Decisions</div>
+          <div class="card" style="margin-bottom:0.75rem">
+            <strong style="color:var(--accent2); font-size:0.85rem;">Input Contract</strong>
+            <p style="color:var(--text-muted); font-size:0.88rem; margin-top:0.3rem;">
+              The bot requires three intake fields before generating anything — role, company type, and years of experience.
+              This prevents hallucinated generic output and forces the user to give the model the context it needs.
+            </p>
+          </div>
+          <div class="card" style="margin-bottom:0.75rem">
+            <strong style="color:var(--accent2); font-size:0.85rem;">Output Schema</strong>
+            <p style="color:var(--text-muted); font-size:0.88rem; margin-top:0.3rem;">
+              Every question set follows a fixed 5-question structure: warm-up → 2 technical → behavioral → curveball,
+              each with a one-line hint on what interviewers are actually listening for.
+            </p>
+          </div>
+          <div class="card" style="margin-bottom:0.75rem">
+            <strong style="color:var(--accent2); font-size:0.85rem;">Feedback Schema</strong>
+            <p style="color:var(--text-muted); font-size:0.88rem; margin-top:0.3rem;">
+              Answer evaluation is broken into four parts: what worked · what's missing · what to add · a stronger version.
+              Deliberately avoids scripted answers — memorized responses fail in real interviews.
+            </p>
+          </div>
+          <div class="card">
+            <strong style="color:var(--accent2); font-size:0.85rem;">Constraint Design</strong>
+            <p style="color:var(--text-muted); font-size:0.88rem; margin-top:0.3rem;">
+              The system prompt hard-blocks salary negotiation numbers, resume writing, travel/booking, and medical advice —
+              all routes that would break the product's value proposition or violate platform guidelines.
+            </p>
+          </div>
+        </div>
+
+        <!-- TEST RESULTS -->
+        <div class="subsection">
+          <div class="subsection-title">Test Results</div>
+          <div class="score-banner">
+            <div class="score-stat">
+              <div class="num">15</div>
+              <div class="label">Total Scenarios</div>
+            </div>
+            <div class="score-stat">
+              <div class="num" style="color:var(--green)">14</div>
+              <div class="label">Full Pass</div>
+            </div>
+            <div class="score-stat">
+              <div class="num" style="color:var(--yellow)">1</div>
+              <div class="label">Partial Pass</div>
+            </div>
+            <div class="score-stat">
+              <div class="num" style="color:var(--accent)">93%</div>
+              <div class="label">Pass Rate</div>
+            </div>
+          </div>
+          <div class="scenario-grid">
+            <div class="scenario-item">
+              <span class="scenario-badge pass">PASS</span>
+              <div class="scenario-text"><strong>Behavioral Feedback</strong><br />4-part structured feedback on a weak answer — flagged as strongest feature</div>
+            </div>
+            <div class="scenario-item">
+              <span class="scenario-badge pass">PASS</span>
+              <div class="scenario-text"><strong>Anxiety Input</strong><br />Empathetic response + "don't-freeze" plan + pivot to practice questions</div>
+            </div>
+            <div class="scenario-item">
+              <span class="scenario-badge pass">PASS</span>
+              <div class="scenario-text"><strong>Contradictory Input</strong><br />Caught "12 yrs exp + junior role" mismatch, asked for clarification</div>
+            </div>
+            <div class="scenario-item">
+              <span class="scenario-badge pass">PASS</span>
+              <div class="scenario-text"><strong>Microsoft ML Senior</strong><br />Full multi-round prep: coding, system design, VP-level behavioral</div>
+            </div>
+            <div class="scenario-item">
+              <span class="scenario-badge pass">PASS</span>
+              <div class="scenario-text"><strong>Illegal Interview Qs</strong><br />Flagged questions, gave 3 tactful redirect scripts for the user</div>
+            </div>
+            <div class="scenario-item">
+              <span class="scenario-badge pass">PASS</span>
+              <div class="scenario-text"><strong>Off-Topic Deflection</strong><br />Cleanly declined non-interview requests every single time</div>
+            </div>
+            <div class="scenario-item">
+              <span class="scenario-badge pass">PASS</span>
+              <div class="scenario-text"><strong>Gibberish Input</strong><br />No crash, no hallucination — handled same as vague input</div>
+            </div>
+            <div class="scenario-item">
+              <span class="scenario-badge partial">PARTIAL</span>
+              <div class="scenario-text"><strong>Mock Interview Roleplay</strong><br />Asked for intake first vs. starting organically — technically correct, slightly rigid</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KEY INSIGHT -->
+        <div class="subsection">
+          <div class="subsection-title">Key Technical Insight</div>
+          <div class="insight">
+            <p>
+              "In a no-code chatbot, the value lives in the system prompt, not the language model.
+              GPT-4o-mini didn't care whether it was talking about menus or interviews.
+              The prompt decided the behavior. Most of the design work is in the constraints, not the raw generation."
+            </p>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.88rem; margin-top:0.75rem;">
+            This is directly applicable to production LLM systems: prompt engineering is a first-class
+            engineering discipline, not a workaround. The same principle governs RAG pipelines,
+            agent tool-use constraints, and safety guardrails at scale.
+          </p>
+        </div>
+
+        <!-- WHAT THIS SHOWS -->
+        <div class="subsection">
+          <div class="subsection-title">What This Shows Professionally</div>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <div class="skill-cat">Delivery</div>
+              <div class="skill-name">End-to-End Shipping</div>
+              <div class="skill-bar-bg" style="margin-top:0.5rem"><div class="skill-bar-fill" style="width:95%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-cat">Engineering</div>
+              <div class="skill-name">Prompt Engineering</div>
+              <div class="skill-bar-bg" style="margin-top:0.5rem"><div class="skill-bar-fill" style="width:85%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-cat">Process</div>
+              <div class="skill-name">Design Thinking</div>
+              <div class="skill-bar-bg" style="margin-top:0.5rem"><div class="skill-bar-fill" style="width:90%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-cat">Quality</div>
+              <div class="skill-name">Adversarial Testing</div>
+              <div class="skill-bar-bg" style="margin-top:0.5rem"><div class="skill-bar-fill" style="width:88%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-cat">Judgment</div>
+              <div class="skill-name">Risk Management</div>
+              <div class="skill-bar-bg" style="margin-top:0.5rem"><div class="skill-bar-fill" style="width:80%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-cat">Breadth</div>
+              <div class="skill-name">Full AI Stack</div>
+              <div class="skill-bar-bg" style="margin-top:0.5rem"><div class="skill-bar-fill" style="width:85%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FUTURE WORK -->
+        <div class="subsection">
+          <div class="subsection-title">Future Work</div>
+          <ul class="future-list">
+            <li>Add dynamic roleplay mode — skip intake for returning users who already provided context</li>
+            <li>Fix Scenario 12: allow organic mock interview start without requiring all intake fields upfront</li>
+            <li>Polish Chatbase deployment page — welcome text, starter chips, branding — before external sharing</li>
+            <li>Explore RAG integration: feed real job descriptions to generate company-specific questions</li>
+          </ul>
+        </div>
+
+      </div><!-- /project-body -->
+    </div><!-- /project-card -->
+  </div><!-- /artifact section -->
+
+
+
+
+  <!-- ── SKILLS ── -->
+  <div class="section" id="skills">
+    <div class="section-header">
+      <div class="section-icon">⚡</div>
+      <h2>Technical Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <div class="skill-cat">AI / ML</div>
+        <div class="skill-name">Python · Scikit-learn · TensorFlow</div>
+        <div class="skill-bar-bg" style="margin-top:0.5rem"><div class="skill-bar-fill" style="width:92%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat">LLM &amp; Generative AI</div>
+        <div class="skill-name">Prompt Engineering · GPT-4o · Chatbase</div>
+        <div class="skill-bar-bg" style="margin-top:0.5rem"><div class="skill-bar-fill" style="width:88%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat">Cloud AI</div>
+        <div class="skill-name">Azure AI · Cognitive Services · AI-900</div>
+        <div class="skill-bar-bg" style="margin-top:0.5rem"><div class="skill-bar-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat">ML in Production</div>
+        <div class="skill-name">Anomaly Detection · NLP · UiPath AI Center</div>
+        <div class="skill-bar-bg" style="margin-top:0.5rem"><div class="skill-bar-fill" style="width:87%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat">Automation Platforms</div>
+        <div class="skill-name">Blue Prism · UiPath · Automation Anywhere</div>
+        <div class="skill-bar-bg" style="margin-top:0.5rem"><div class="skill-bar-fill" style="width:95%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat">Data &amp; Scripting</div>
+        <div class="skill-name">SQL · PowerShell · C# · VB.NET</div>
+        <div class="skill-bar-bg" style="margin-top:0.5rem"><div class="skill-bar-fill" style="width:83%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat">Data Science</div>
+        <div class="skill-name">NumPy · Pandas · Jupyter · Predictive Models</div>
+        <div class="skill-bar-bg" style="margin-top:0.5rem"><div class="skill-bar-fill" style="width:84%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat">Process &amp; Delivery</div>
+        <div class="skill-name">Agile · Scrum · Design Thinking · ROI Analysis</div>
+        <div class="skill-bar-bg" style="margin-top:0.5rem"><div class="skill-bar-fill" style="width:90%"></div></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── ABOUT ── -->
+  <div class="section" id="about">
+    <div class="section-header">
+      <div class="section-icon">👤</div>
+      <h2>About Me</h2>
+    </div>
+
+    <!-- VALUE STATEMENT + AUDIENCE -->
+    <div class="card" style="margin-bottom:1rem; border-left:3px solid var(--accent);">
+      <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); margin-bottom:0.75rem;">Personal Value Proposition</div>
+      <p style="color:var(--text); font-size:0.95rem; font-weight:500; line-height:1.7; margin-bottom:0.75rem;">
+        A senior AI/ML practitioner and automation architect committed to building production-grade intelligent systems
+        that generate measurable business value. I bring 10+ years of hands-on experience designing enterprise automation
+        at scale, combined with growing depth in applied machine learning, LLM development, and cloud AI — making me equally
+        effective as a technical contributor and a strategic leader in AI-driven organizations.
+      </p>
+      <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent2); margin-bottom:0.5rem;">Target Audience</div>
+      <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.65;">
+        This portfolio is designed for <strong style="color:var(--text)">technical hiring managers, AI/ML team leads, and graduate faculty</strong>
+        evaluating candidates for AI engineering, machine learning, or intelligent automation roles. It demonstrates both
+        practical AI/ML application skills and the depth of enterprise production experience that supports them.
+      </p>
+    </div>
+
+    <!-- BIO -->
+    <div class="card" style="margin-bottom:1rem">
+      <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:0.9rem;">
+        I'm <strong style="color:var(--text)">Raja Narender Reddy Lingaladinne</strong> — a technology professional with over a decade of experience
+        designing and delivering <strong style="color:var(--text)">enterprise-scale intelligent automation systems</strong> across banking, financial services,
+        healthcare, and government sectors. My career began in infrastructure and systems engineering, progressed through
+        deep specialization in robotic process automation architecture, and has now evolved into a focused transition toward
+        <strong style="color:var(--text)">applied machine learning and AI engineering</strong>.
+      </p>
+      <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:0.9rem;">
+        Throughout my automation career, I've led COE-level practices, architected scalable process automation solutions,
+        and increasingly embedded AI capabilities directly into production workflows — integrating Azure Cognitive Services
+        for natural language processing, developing predictive analytics models in Python to drive operational intelligence,
+        and leading the adoption of ML model deployment within enterprise RPA platforms. This work gave me a rare vantage point:
+        I've seen firsthand where rule-based automation hits its ceiling, and where machine learning takes over.
+      </p>
+      <p style="color:var(--text-muted); font-size:0.92rem;">
+        I'm now deliberately closing the gap between automation practitioner and AI engineer — pursuing graduate studies
+        in Machine Learning Fundamentals at Indiana Wesleyan University, building LLM-powered applications from scratch,
+        and developing a portfolio that demonstrates both the breadth of my automation background and the depth of
+        my growing AI/ML capabilities. I bring a practitioner's rigor to everything I build:
+        design for production, test adversarially, and optimize for real users.
+      </p>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <div class="card" style="margin-bottom:1rem">
+      <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); margin-bottom:1rem;">Certifications</div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:0.65rem;">
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; display:flex; align-items:center; gap:0.6rem;">
+          <span style="font-size:1.1rem;">🎖️</span>
+          <div>
+            <div style="font-size:0.83rem; font-weight:600; color:var(--text);">Azure AI Fundamentals</div>
+            <div style="font-size:0.72rem; color:var(--text-dim);">Microsoft Certified · AI-900</div>
+          </div>
+        </div>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; display:flex; align-items:center; gap:0.6rem;">
+          <span style="font-size:1.1rem;">🎖️</span>
+          <div>
+            <div style="font-size:0.83rem; font-weight:600; color:var(--text);">Blue Prism Developer</div>
+            <div style="font-size:0.72rem; color:var(--text-dim);">Certified · AD01</div>
+          </div>
+        </div>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; display:flex; align-items:center; gap:0.6rem;">
+          <span style="font-size:1.1rem;">🎖️</span>
+          <div>
+            <div style="font-size:0.83rem; font-weight:600; color:var(--text);">UiPath RPA Developer</div>
+            <div style="font-size:0.72rem; color:var(--text-dim);">Certified + Advanced Certificate</div>
+          </div>
+        </div>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; display:flex; align-items:center; gap:0.6rem;">
+          <span style="font-size:1.1rem;">🎖️</span>
+          <div>
+            <div style="font-size:0.83rem; font-weight:600; color:var(--text);">Automation Anywhere</div>
+            <div style="font-size:0.72rem; color:var(--text-dim);">A2019 Developer Certified</div>
+          </div>
+        </div>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; display:flex; align-items:center; gap:0.6rem;">
+          <span style="font-size:1.1rem;">🎖️</span>
+          <div>
+            <div style="font-size:0.83rem; font-weight:600; color:var(--text);">Power Automate</div>
+            <div style="font-size:0.72rem; color:var(--text-dim);">Microsoft PL-900</div>
+          </div>
+        </div>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; display:flex; align-items:center; gap:0.6rem;">
+          <span style="font-size:1.1rem;">🎓</span>
+          <div>
+            <div style="font-size:0.83rem; font-weight:600; color:var(--text);">M.S. Computer Science</div>
+            <div style="font-size:0.72rem; color:var(--text-dim);">Monroe College, New York</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFESSIONAL EXPERIENCE -->
+    <div style="margin-bottom:1rem;">
+      <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); margin-bottom:1rem; padding-left:0.1rem;">Professional Experience</div>
+
+      <!-- BNY CARD -->
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.25rem 1.5rem; margin-bottom:0.85rem;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.6rem;">
+          <div>
+            <div style="font-size:1rem; font-weight:700; color:var(--text);">COE Automation &amp; AI Lead</div>
+            <div style="font-size:0.85rem; color:var(--accent2); font-weight:500;">Bank of New York (BNY) · Corporate Trust</div>
+          </div>
+        </div>
+        <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.65; margin-bottom:0.9rem;">
+          Senior technical authority for AI strategy and intelligent automation across enterprise operations.
+          Architect ML-powered workflows, lead Azure AI/NLP integrations, govern UiPath AI Center model deployment,
+          and design anomaly detection systems for real-time fraud monitoring. Evaluate and prototype emerging AI capabilities
+          — LLMs, generative AI, computer vision — for enterprise adoption. Own the full COE lifecycle: discovery, architecture,
+          engineering governance, and production reliability.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+          <span class="tag">Python · Scikit-learn</span>
+          <span class="tag">Azure Cognitive Services</span>
+          <span class="tag">UiPath AI Center</span>
+          <span class="tag">NLP · Anomaly Detection</span>
+          <span class="tag">LLM Evaluation</span>
+          <span class="tag">Blue Prism · UiPath · AA</span>
+          <span class="tag">COE Leadership</span>
+        </div>
+      </div>
+
+      <!-- HUNTINGTON / OHIO CARD -->
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.25rem 1.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.6rem;">
+          <div>
+            <div style="font-size:1rem; font-weight:700; color:var(--text);">Senior Automation Engineer &amp; RPA Developer</div>
+            <div style="font-size:0.85rem; color:var(--accent2); font-weight:500;">Huntington National Bank · Financial Services &amp; Government</div>
+          </div>
+        </div>
+        <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.65; margin-bottom:0.9rem;">
+          Progressed from RPA developer to senior engineer across highly regulated banking and government environments.
+          Built mission-critical automation for AML, BSA, CDD, and financial operations — integrated with SAP, Mainframe,
+          and proprietary platforms. Applied early AI/ML techniques for intelligent exception handling and decision augmentation.
+          Owned production reliability, security governance (RBAC, credential management), and AI readiness assessments
+          that shaped the ML practice later formalized at BNY.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+          <span class="tag">Blue Prism · UiPath</span>
+          <span class="tag">AML · BSA · CDD</span>
+          <span class="tag">ML Decision Logic</span>
+          <span class="tag">SAP · Mainframe Integration</span>
+          <span class="tag">RBAC · Security Governance</span>
+          <span class="tag">Production Support</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CORE STRENGTHS -->
+    <div class="card">
+      <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); margin-bottom:1rem;">Core Strengths</div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:0.75rem;">
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:0.85rem 1rem;">
+          <div style="font-size:0.85rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">Applied Machine Learning</div>
+          <div style="font-size:0.78rem; color:var(--text-dim);">Scikit-learn · TensorFlow · classification · regression · anomaly detection</div>
+        </div>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:0.85rem 1rem;">
+          <div style="font-size:0.85rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">LLM &amp; Generative AI</div>
+          <div style="font-size:0.78rem; color:var(--text-dim);">Prompt engineering · GPT-4o · constraint architecture · LLM app development</div>
+        </div>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:0.85rem 1rem;">
+          <div style="font-size:0.85rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">Azure AI &amp; Cloud Services</div>
+          <div style="font-size:0.78rem; color:var(--text-dim);">Cognitive Services · NLP pipelines · Azure AI-900 certified</div>
+        </div>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:0.85rem 1rem;">
+          <div style="font-size:0.85rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">Enterprise Automation Architecture</div>
+          <div style="font-size:0.78rem; color:var(--text-dim);">Blue Prism · UiPath · Automation Anywhere · COE leadership</div>
+        </div>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:0.85rem 1rem;">
+          <div style="font-size:0.85rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">Python &amp; Data Engineering</div>
+          <div style="font-size:0.78rem; color:var(--text-dim);">NumPy · Pandas · SQL · predictive analytics · data pipelines</div>
+        </div>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:0.85rem 1rem;">
+          <div style="font-size:0.85rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">AI Systems Design</div>
+          <div style="font-size:0.78rem; color:var(--text-dim);">ML model deployment · UiPath AI Center · end-to-end AI delivery</div>
+        </div>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:0.85rem 1rem;">
+          <div style="font-size:0.85rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">Stakeholder &amp; Strategy</div>
+          <div style="font-size:0.78rem; color:var(--text-dim);">ROI analysis · cross-functional alignment · technical advisory</div>
+        </div>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:0.85rem 1rem;">
+          <div style="font-size:0.85rem; font-weight:600; color:var(--text); margin-bottom:0.25rem;">Production Reliability</div>
+          <div style="font-size:0.78rem; color:var(--text-dim);">Root cause analysis · failure mode testing · resilience engineering</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── CONTACT ── -->
+  <div class="section" id="contact">
+    <div class="section-header">
+      <div class="section-icon">✉️</div>
+      <h2>Contact</h2>
+    </div>
+    <div class="card">
+      <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.25rem;">
+        Open to AI/ML engineering roles, intelligent automation leadership positions, and graduate research collaborations.
+        Feel free to reach out.
+      </p>
+      <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+        <a href="mailto:Rajareddy.think@gmail.com" style="display:inline-flex; align-items:center; gap:0.5rem; background:var(--surface2); border:1px solid var(--border); color:var(--text); text-decoration:none; padding:9px 18px; border-radius:8px; font-size:0.88rem; font-weight:500; transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">📧 Rajareddy.think@gmail.com</a>
+        <a href="https://www.linkedin.com/in/raja-reddy-lingaladinne" target="_blank" style="display:inline-flex; align-items:center; gap:0.5rem; background:var(--surface2); border:1px solid var(--border); color:var(--text); text-decoration:none; padding:9px 18px; border-radius:8px; font-size:0.88rem; font-weight:500; transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent2)'" onmouseout="this.style.borderColor='var(--border)'">💼 LinkedIn ↗</a>
+        <span style="display:inline-flex; align-items:center; gap:0.5rem; background:var(--surface2); border:1px solid var(--border); color:var(--text-muted); padding:9px 18px; border-radius:8px; font-size:0.88rem;">📍 New York, NY</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    Raja Narender Reddy Lingaladinne · AIML-500 Professional Portfolio · Indiana Wesleyan University · 2026
+    &nbsp;·&nbsp;
+    <a href="https://www.chatbase.co/B_hX8l5FC4GH_uthtMgUL/help" target="_blank">Live Bot Demo ↗</a>
+  </p>
+</footer>
+
+</body>
+</html>
