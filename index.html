@@ -479,6 +479,41 @@
     .skill-bar-bg { height: 3px; background: var(--border); border-radius: 999px; overflow: hidden; margin-top: 0.5rem; }
     .skill-bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
 
+    /* CASE STUDY */
+    .case-study-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .case-lens {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem;
+    }
+    .case-lens.deep-learning { border-color: rgba(0, 212, 170, 0.35); }
+    .case-lens-title {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .case-lens-title i { color: var(--accent2); }
+    .case-lens p { color: var(--text-muted); font-size: 0.86rem; line-height: 1.7; }
+    .case-points { list-style: none; margin-top: 0.8rem; }
+    .case-points li {
+      color: var(--text-muted);
+      font-size: 0.83rem;
+      line-height: 1.55;
+      padding: 0.32rem 0 0.32rem 1rem;
+      position: relative;
+    }
+    .case-points li::before { content: '•'; color: var(--accent2); position: absolute; left: 0; }
+    .comparison-table td:nth-child(2) { color: var(--text); font-weight: 600; }
+
     /* FUTURE WORK */
     .future-list { list-style: none; }
     .future-list li {
@@ -513,9 +548,12 @@
     @media (max-width: 600px) {
       .project-title-row { flex-direction: column; }
       .score-banner { flex-direction: column; align-items: flex-start; }
+      .case-study-grid { grid-template-columns: 1fr; }
+      .tech-table { display: block; overflow-x: auto; }
       .nav-links { display: none; }
     }
   </style>
+  <meta http-equiv="refresh" content="0; url=home.html" />
 </head>
 <body>
 
@@ -523,7 +561,8 @@
 <nav>
   <div class="nav-logo"><span class="nav-logo-dot"></span> Raja N. Lingaladinne</div>
   <div class="nav-links">
-    <a href="#artifact"><i class="fa-solid fa-robot"></i> AI Lab</a>
+    <a href="#artifact"><i class="fa-solid fa-robot"></i> Artifact 1</a>
+    <a href="#artifact-2"><i class="fa-solid fa-code-compare"></i> Artifact 2</a>
     <a href="#skills"><i class="fa-solid fa-bolt"></i> Skills</a>
     <a href="#about"><i class="fa-solid fa-user"></i> About</a>
     <a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
@@ -844,6 +883,118 @@
     </div><!-- /project-card -->
   </div><!-- /artifact section -->
 
+  <!-- ── ARTIFACT 2 ── -->
+  <div class="section" id="artifact-2">
+    <div class="section-header">
+      <div class="section-icon"><i class="fa-solid fa-code-compare" style="color:var(--accent2);"></i></div>
+      <h2>Machine Learning vs. Deep Learning</h2>
+      <span style="margin-left:auto; background:rgba(0,212,170,0.1); border:1px solid rgba(0,212,170,0.35); color:var(--accent2); font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:3px 12px; border-radius:999px;">Artifact 2</span>
+    </div>
+
+    <div class="project-card" style="border-color:rgba(0,212,170,0.35);">
+      <div class="project-header">
+        <div class="project-title-row">
+          <div class="project-title">Machine Learning vs. Deep Learning: Real-World Case Study</div>
+          <span class="project-live-btn" style="cursor:default;"><span class="live-dot"></span> Case Study</span>
+        </div>
+        <div class="project-subtitle">
+          AI/ML Technical Analysis · Machine Learning Fundamentals · Indiana Wesleyan University · Summer 2026
+        </div>
+        <div class="project-tags">
+          <span class="tag">Supervised Learning</span>
+          <span class="tag">Deep Neural Networks</span>
+          <span class="tag">Fintech AI</span>
+          <span class="tag">Computer Vision</span>
+          <span class="tag">Technical Communication</span>
+        </div>
+      </div>
+
+      <div class="project-body">
+        <div class="insight" style="border-left-color:var(--accent2); margin:0;">
+          <p style="font-style:normal; color:var(--text-muted);">
+            <strong style="color:var(--text);">Artifact summary:</strong> A revised class case study comparing machine learning and deep learning through banking fraud detection and autonomous-driving image recognition. It shows how I evaluate data, risk, interpretability, and operational constraints before selecting an AI approach.
+          </p>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Project Overview</div>
+          <p>
+            Adapted from coursework in Machine Learning Fundamentals, this artifact turns a foundational comparison into a practical decision framework for professional audiences. It demonstrates my ability to explain when a conventional machine-learning model is the right business choice, when deep learning is necessary, and how those decisions affect deployment in regulated and high-stakes environments.
+          </p>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Case Study: Selecting the Right Approach</div>
+          <div class="case-study-grid">
+            <div class="case-lens">
+              <div class="case-lens-title"><i class="fa-solid fa-building-columns"></i> Machine Learning: Banking Fraud Detection</div>
+              <p>
+                Fraud detection commonly starts with structured transaction data: amount, merchant category, location, device signal, account behavior, and transaction velocity. Tree-based models, logistic regression, and other supervised ML methods can identify suspicious patterns efficiently while retaining useful explanations for investigators and auditors.
+              </p>
+              <ul class="case-points">
+                <li><strong style="color:var(--text);">Why ML fits:</strong> structured, tabular data and fast scoring requirements.</li>
+                <li><strong style="color:var(--text);">Business value:</strong> interpretable risk signals support fraud operations, model governance, and customer-impact decisions.</li>
+                <li><strong style="color:var(--text);">Why DL is less suitable:</strong> it adds training cost and complexity without a clear advantage when engineered features already capture the relevant patterns.</li>
+              </ul>
+            </div>
+            <div class="case-lens deep-learning">
+              <div class="case-lens-title"><i class="fa-solid fa-car-side"></i> Deep Learning: Autonomous-Driving Image Recognition</div>
+              <p>
+                Autonomous vehicles process high-dimensional visual input, including road markings, pedestrians, traffic signs, vehicles, and changing weather or lighting. Convolutional neural networks and related deep-learning architectures learn features directly from raw images at a scale that hand-crafted rules or simple tabular models cannot match.
+              </p>
+              <ul class="case-points">
+                <li><strong style="color:var(--text);">Why DL fits:</strong> raw visual data contains complex spatial patterns and millions of input values per frame.</li>
+                <li><strong style="color:var(--text);">Business value:</strong> learned visual representations improve perception across varied, real-world driving conditions.</li>
+                <li><strong style="color:var(--text);">Why simple ML is less suitable:</strong> manual feature engineering cannot reliably capture the depth, context, and variation of visual scenes.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Decision Framework</div>
+          <table class="tech-table comparison-table">
+            <thead>
+              <tr><th>Decision Factor</th><th>Machine Learning</th><th>Deep Learning</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Best-fit data</td><td>Structured, labeled transaction and operational data</td><td>Unstructured, high-dimensional data such as images, audio, and video</td></tr>
+              <tr><td>Feature work</td><td>Domain-informed feature engineering is valuable</td><td>Models learn layered features directly from raw input</td></tr>
+              <tr><td>Interpretability</td><td>Often easier to explain, validate, and govern</td><td>More complex; requires additional explainability and monitoring controls</td></tr>
+              <tr><td>Operational trade-off</td><td>Efficient training and low-latency inference for business workflows</td><td>Higher data, compute, and model-operations requirements</td></tr>
+              <tr><td>Example decision</td><td>Fraud-risk scoring for transaction review</td><td>Object detection and scene understanding for autonomous driving</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Skills Demonstrated</div>
+          <div class="skills-grid">
+            <div class="skill-item"><div class="skill-icon">📈</div><div class="skill-cat">Foundation</div><div class="skill-name">Machine Learning Fundamentals</div></div>
+            <div class="skill-item"><div class="skill-icon">🧠</div><div class="skill-cat">Foundation</div><div class="skill-name">Deep Learning Concepts</div></div>
+            <div class="skill-item"><div class="skill-icon">🔎</div><div class="skill-cat">Analysis</div><div class="skill-name">Case Study Analysis</div></div>
+            <div class="skill-item"><div class="skill-icon">✍️</div><div class="skill-cat">Communication</div><div class="skill-name">Technical Communication</div></div>
+            <div class="skill-item"><div class="skill-icon">🏦</div><div class="skill-cat">Application</div><div class="skill-name">AI/ML in Real-World Domains</div></div>
+            <div class="skill-item"><div class="skill-icon">🔄</div><div class="skill-cat">Strategy</div><div class="skill-name">Business Problem Translation</div></div>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Why This Artifact Matters</div>
+          <p>
+            Artifact 1, the Interview Prep Coach, demonstrates user-focused problem solving, prompt design, and structured guidance. Artifact 2 complements it by showing a different capability: the ability to analyze AI methods, connect technical trade-offs to business context, and communicate those choices clearly to mixed technical and leadership audiences.
+          </p>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Audience Customization</div>
+          <p>
+            This case study is tailored for fintech and technology audiences where AI decisions must balance measurable value with governance, interpretability, and operational reliability. For hiring managers, internal leaders, and technical recruiters, it demonstrates that I can translate AI/ML concepts into decision-ready language grounded in the realities of banking technology and enterprise automation.
+          </p>
+        </div>
+      </div><!-- /project-body -->
+    </div><!-- /project-card -->
+  </div><!-- /artifact-2 section -->
 
   <!-- ── SKILLS ── -->
   <div class="section" id="skills">
