@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Artifact 4 | Navigating Data Challenges in ML</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="portfolio.css" rel="stylesheet" />
+</head>
+<body>
+  <nav><a class="brand" href="home.html"><span class="brand-dot"></span> Raja Narender Reddy Lingaladinne</a><div class="nav-links"><a href="home.html">Portfolio Home</a><a href="artifact-1.html">Artifact 1</a><a href="artifact-2.html">Artifact 2</a><a href="artifact-3.html">Artifact 3</a><a href="artifact-4.html">Artifact 4</a></div></nav>
+  <main class="wrap content">
+    <header class="page-hero"><span class="eyebrow"><i class="fa-solid fa-database"></i> Artifact 4 · Data Challenge Scenarios · Indiana Wesleyan University</span><h1>Navigating Data Challenges <span>in Machine Learning</span></h1><p>How real-world data problems. messy records, imbalance, privacy, and drift. decide whether a model is trustworthy, and how I'd handle each one in production.</p>
+<div class="callout">
+<div class="label" style="margin-bottom:.5rem">Artifact Snapshot</div>
+<p><strong>Objective:</strong> Demonstrate operational ML competency in handling messy data, class imbalance, privacy, bias, and post-deployment monitoring in production.</p>
+<p><strong>Unique value:</strong> Grounded in my BNY mainframe, QA, and automation experience with bot-failure imbalance, override logging, and regulated-data handling, which turns theory into enterprise practice.</p>
+<p><strong>Relevance:</strong> Shows ML engineering leads and risk partners that I understand reliability and not just accuracy.</p>
+<p><strong>References:</strong> AI tools used include the SchoolAI Data Challenge Coach for the scenario walkthrough and GPT-4o-mini for revision. Decisions and the write-up are my own.</p>
+</div>
+<div class="artifact-stats"><div class="artifact-stat"><i class="fa-solid fa-broom"></i><span>Focus</span><strong>Data Quality &amp; Cleaning</strong></div><div class="artifact-stat"><i class="fa-solid fa-shield-halved"></i><span>Concern</span><strong>Privacy &amp; Fairness</strong></div><div class="artifact-stat"><i class="fa-solid fa-chart-line"></i><span>Discipline</span><strong>Monitoring &amp; Verification</strong></div></div><div class="chips"><span class="chip">Data Preprocessing</span><span class="chip">Class Imbalance</span><span class="chip">Model Evaluation</span><span class="chip">Privacy &amp; Security</span><span class="chip">ML Lifecycle</span></div></header>
+
+    <section class="card"><div class="label" style="margin-bottom:.5rem">Artifact Summary</div><p><strong style="color:var(--text)">Objective:</strong> Adapted from the Workshop 4 Data Challenge Scenarios activity, this artifact demonstrates the ability to identify and address the practical data problems that decide whether a machine learning model is accurate, fair, and reliable in production. It covers data cleaning, class imbalance, model selection and justification, false-positive vs false-negative trade-offs, data privacy, bias mitigation, and post-deployment monitoring. This competency is distinct from Artifacts 1–3: not building an AI experience, selecting a model, or explaining a concept. but <strong>operationalizing</strong> ML responsibly, the skill that determines whether a deployed model holds up under real data.</p></section>
+
+    <section class="section"><div class="section-title"><h2><span class="icon"><i class="fa-solid fa-broom"></i></span>Data Cleaning &amp; Preprocessing</h2></div>
+      <article class="case-card"><h3><i class="fa-solid fa-triangle-exclamation" style="color:var(--accent2);margin-right:.45rem"></i>Missing Values, Outliers, and Imbalance</h3>
+      <p>Real ML data is messy. <strong>Missing values</strong> are dropped only when rare and random; otherwise I impute (mean/median) or flag them so the model knows they were absent. <strong>Outliers</strong> are investigated before deletion. a $9,999 transaction may be fraud, not an error. <strong>Class imbalance</strong> is the quiet killer: if 98% of tickets are "resolved," a model that always predicts "resolved" scores 98% accuracy yet catches nothing. I handle it with class weights, resampling (SMOTE), and metrics beyond accuracy (precision, recall, F1).</p>
+      <p style="margin-top:.6rem"><em>Automation example:</em> in bot-failure prediction, "failure" events are rare against a sea of "success" logs. Naive accuracy hides the model's real weakness, so I weight the failure class and report recall, not just accuracy.</p>
+      </article>
+    </section>
+
+    <section class="section"><div class="section-title"><h2><span class="icon"><i class="fa-solid fa-balance-scale"></i></span>Model Selection &amp; Evaluation</h2></div>
+      <div class="two-col">
+        <div class="card"><div class="label" style="margin-bottom:.5rem"><i class="fa-solid fa-sitemap"></i> Choosing &amp; Justifying</div><p>Model choice follows the problem: structured, tabular, explainability-sensitive data → gradient boosting or logistic regression; raw images/audio → deep learning. I justify by data type, volume, latency, and whether auditors must see <em>why</em>. A less-accurate-but-explainable model is often the right call in regulated banking.</p></div>
+        <div class="card"><div class="label" style="margin-bottom:.5rem"><i class="fa-solid fa-bullseye"></i> False Positives vs False Negatives</div><p>Accuracy lies on imbalanced data. A <strong>false positive</strong> is a false alarm; a <strong>false negative</strong> is a missed event. Which hurts more is domain-specific. In RPA exception handling, a false "auto-resolved" (FN) can post a bad entry, so I tune toward fewer FNs even if false alarms (FP) rise. because a human can absorb extra review, but not an undetected error.</p></div>
+      </div>
+    </section>
+
+    <section class="section"><div class="section-title"><h2><span class="icon"><i class="fa-solid fa-lock"></i></span>Data Privacy, Security &amp; Bias</h2></div>
+      <div class="two-col">
+        <div class="card"><div class="label" style="margin-bottom:.5rem"><i class="fa-solid fa-user-shield"></i> Privacy &amp; Security</div><p>Training data often carries PII. customer names, account context. Risks include re-identification, leakage, and regulatory exposure (GDPR/CCPA, banking controls). I minimize columns, tokenize/pseudonymize, restrict access, and use synthetic data for development, keeping training data inside the regulated environment.</p></div></div>
+        <div class="card"><div class="label" style="margin-bottom:.5rem"><i class="fa-solid fa-scale-balanced"></i> Bias Mitigation</div><p>Biased historical data yields a biased model. I audit training data for representation and check outcomes across groups. If past "success" labels come only from one business unit, the model learns that unit's pattern as "normal" and misreads others. so I verify coverage before training, not after.</p></div></div>
+      </div>
+    </section>
+
+    <section class="section"><div class="section-title"><h2><span class="icon"><i class="fa-solid fa-heart-pulse"></i></span>Post-Deployment Monitoring</h2></div>
+      <article class="case-card"><h3><i class="fa-solid fa-chart-line" style="color:var(--accent2);margin-right:.45rem"></i>Models Drift. Verification Never Ends</h3>
+      <p>A model degrades as data changes. My monitoring plan tracks input distributions, accuracy, and false-positive/false-negative rates over time; sets alert thresholds; schedules retraining; keeps a human review on high-stakes outputs; and logs <strong>overrides</strong>. where humans correct the model. Overrides are where hidden bias and drift surface first.</p>
+      <p style="margin-top:.6rem"><em>Automation example:</em> I already monitor 52 bots in production for failure drift. A model needs the same observability. dashboards on prediction volume, score distribution, and override rate. The lifecycle doesn't end at deployment; that's where governance begins.</p>
+      </article>
+    </section>
+
+    <section class="section"><div class="section-title"><h2><span class="icon"><i class="fa-solid fa-screwdriver-wrench"></i></span>Process: Working With the AI Coach</h2></div><div class="card"><table><thead><tr><th>Step</th><th>What I Did</th><th>Why</th></tr></thead><tbody><tr><td>1. Scenario walkthrough</td><td>Worked three data-challenge scenarios with the SchoolAI coach</td><td>Stress-tested my reasoning against realistic cases</td></tr><tr><td>2. Decisions + reasoning</td><td>Answered each with a position and justification</td><td>Exemplary engagement = independent critical thinking</td></tr><tr><td>3. Follow-up questions</td><td>Asked about test-set leakage, reward gaming, stopping criteria</td><td>Pushed past surface answers to failure modes</td></tr><tr><td>4. Synthesis</td><td>Connected all topics to one idea: data quality &gt; algorithm sophistication</td><td>Showed deep comprehension of objectives</td></tr></tbody></table></div></section>
+
+    <section class="section"><div class="section-title"><h2><span class="icon"><i class="fa-solid fa-star"></i></span>Skills Demonstrated</h2></div><div class="skill-list"><div class="skill"><i class="fa-solid fa-broom"></i>Data Preprocessing</div><div class="skill"><i class="fa-solid fa-vials"></i>Imbalance &amp; Resampling</div><div class="skill"><i class="fa-solid fa-bullseye"></i>Model Evaluation</div><div class="skill"><i class="fa-solid fa-user-shield"></i>Privacy &amp; Security</div><div class="skill"><i class="fa-solid fa-scale-balanced"></i>Bias Mitigation</div><div class="skill"><i class="fa-solid fa-heart-pulse"></i>Monitoring &amp; Verification</div></div></section>
+
+    <section class="two-col"><div class="card"><div class="label" style="margin-bottom:.5rem"><i class="fa-solid fa-puzzle-piece"></i> Why This Artifact Matters (Value Proposition)</div><p>Artifacts 1–3 show I can design, select, and explain AI. Artifact 4 shows I can <strong>operate</strong> it responsibly. cleaning messy data, choosing the right metric, protecting privacy, and monitoring after launch. In enterprise automation, that operational discipline is what separates a demo from a system people trust. Accuracy doesn't earn trust; reliability under real data does.</p></div><div class="card"><div class="label" style="margin-bottom:.5rem"><i class="fa-solid fa-users-viewfinder"></i> Audience Customization</div><p>This version is tailored for ML engineering leads, risk/compliance partners, and hiring managers evaluating production-readiness. not just model trivia. The original activity was a guided chat; I revised it into a structured competency page with banking/automation examples, showing I can turn a learning exercise into an operational standard. The framing reflects my COE experience: govern the model like you govern a production bot.</p></div></section>
+
+    <section class="section"><div class="callout">Ten years of automation taught me that the model is the easy part. The hard part is the data feeding it, the metrics judging it, and the monitoring protecting it long after launch. That's where trust is won or lost.</div></section>
+  </main>
+  <footer>Artifact 4 · Raja Narender Reddy Lingaladinne · Machine Learning Fundamentals · Indiana Wesleyan University · 2026</footer>
+</body>
+</html>
